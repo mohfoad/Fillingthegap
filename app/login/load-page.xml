@@ -1,0 +1,3 @@
+<Page loaded="pageDefineLoaded" class="page" actionBarHidden="true">
+    <Frame id="topmost" defaultPage="{{defaultPage}}"></Frame>
+</Page>

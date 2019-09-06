@@ -1,0 +1,17 @@
+<Page class="page" xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" >
+    
+    <ActionBar class="action-bar" backgroundColor="{{topbarColor}}">
+        <NavigationButton tap="goBack" android.systemIcon="ic_menu_back" />
+        <Label class="action-bar-title" text="{{ webViewSrc }}" horizontalAlignment="center" />
+    </ActionBar>
+
+    <GridLayout class="page-content" class="main-area">
+        <ScrollView>
+            <GridLayout rows="*, *" >
+                <WebView row="0" loaded="onWebViewLoaded" id="detailNewsWebView" src="{{ webViewSrc }}" />
+                <!-- <Label row="1" text="{{ result }}" /> -->
+            </GridLayout>
+        </ScrollView>
+        <ActivityIndicator busy="{{ isLoading }}" class="activity-indicator" />
+    </GridLayout>
+</Page>

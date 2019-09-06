@@ -1,0 +1,36 @@
+<!--
+RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
+Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
+http://docs.telerik.com/devtools/nativescript-ui/Controls/NativeScript/SideDrawer/getting-started
+-->
+<Page loaded="onLoaded"  class="page" navigatingTo="onNavigatingTo" navigatingFrom="onNavigatingFrom" actionBarHidden="true" id="sideDrawerMenu">
+<nsDrawer:RadSideDrawer id="sideDrawer"  xmlns:nsDrawer="nativescript-ui-sidedrawer" xmlns:lv="nativescript-ui-listview" xmlns:dd="nativescript-drop-down" xmlns:MDL="nativescript-materialdropdownlist">
+    <nsDrawer:RadSideDrawer.drawerTransition>
+        <nsDrawer:SlideInOnTopTransition/>
+    </nsDrawer:RadSideDrawer.drawerTransition>
+
+    <nsDrawer:RadSideDrawer.drawerContent>
+        <GridLayout rows="auto, *" class="sidedrawer sidedrawer-left"  >
+            <StackLayout class="sidedrawer-header" backgroundColor="{{topbarColor}}" row="0">
+                <Image class="sidedrawer-header-image fa" text="&#xf2bd;" src="{{logoPath}}"/>
+                <Label class="sidedrawer-header-brand" text="{{userName}}" />
+                <Label class="footnote" text="{{Email}}" />
+            </StackLayout>
+            
+            <lv:RadListView  row="1" id="ls" items="{{categories}}" backgroundColor="{{topbarColor}}">
+                <lv:RadListView.itemTemplate>
+                    <GridLayout columns="auto, auto" class="sidedrawer-list-item selected"             route="menu/menu-page" title="{{itemName}}" tap="onNativatedTap"            height="{{(collapsed && !isFavoriteToggle)? '0' : '40'}}" borderWidth="0.5" backgroundColor="{{backColor}}">
+                        <Label fontSize="20" col="0" text="{{itemName}}" class="p-r-10 item-name" marginLeft="{{real? '25' : '0'}}" color="white" />
+                        <Label fontSize="18" col="1" visibility="{{itemName == 'Comunidades Autónomas'? 'visible' : 'collapsed'}}" text="{{favText}}" color="white"/>
+                        <!-- <Image col="1" src="~/images/angle-down-solid.svg"/> -->
+                    </GridLayout>
+                </lv:RadListView.itemTemplate>
+            </lv:RadListView>
+        </GridLayout>
+    </nsDrawer:RadSideDrawer.drawerContent>
+
+    <nsDrawer:RadSideDrawer.mainContent>
+        <Frame defaultPage="news/news-list-page"></Frame>
+    </nsDrawer:RadSideDrawer.mainContent>
+</nsDrawer:RadSideDrawer>
+</Page>

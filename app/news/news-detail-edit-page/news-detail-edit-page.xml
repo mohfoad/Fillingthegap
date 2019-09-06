@@ -1,0 +1,100 @@
+<Page 
+    navigatingTo="onNavigatingTo"
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    class="page">
+
+    <ActionBar class="action-bar">
+        <!--HACK - we should remove the navigation button-->
+        <NavigationButton visibility="collapsed" />
+        <Label class="action-bar-title" text="Edit News Details" horizontalAlignment="center" />
+        <ActionItem tap="onCancelButtonTap" ios.position="left" android.position="left">
+            <Label text="Cancel" verticalAlignment="center" class="action-item" />
+        </ActionItem>
+        <ActionItem ios.position="right" android.position="right">
+            <Label text="Done" class="action-item" verticalAlignment="center" tap="onDoneButtonTap" 
+                isEnabled="{{ news.isModelValid }}"
+                isUserInteractionEnabled="{{ news.isModelValid }}" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout class="page-content">
+        <ScrollView>
+            <StackLayout class="news-list">
+                <Label text="News MAKE" class="news-list-odd" />
+                <TextField text="{{ news.name }}" hint="News make field is required" 
+                    class="{{ news.name, news.name ? 'news-list-even' : 'news-list-even invalid-text' }}" />
+
+                <GridLayout rows="*, 55, *" columns="*, auto" class="news-list-odd" >
+                    <Label text="PRICE PER DAY" />
+                    <Label col="1" horizontalAlignment="right" class="text-primary news-list-price">
+                        <FormattedString>
+                            <Span text="€" />
+                            <Span text="{{ news.price }}" />
+                        </FormattedString>
+                    </Label>
+
+                    <StackLayout row="1" colSpan="2" verticalAlignment="center">
+                        <Slider value="{{ news.price, news.price | roundingValueConverter }}" />
+                    </StackLayout>
+
+                    <Label text="ADD OR REMOVE IMAGE" row="2" colSpan="2" />
+                </GridLayout>
+                
+                <StackLayout class="news-list-even">
+                    <GridLayout height="80" width="80" class="thumb" horizontalAlignment="left" 
+                        backgroundImage="{{ news.imageUrl }}" tap="onImageAddRemoveTap">
+                        <GridLayout class="thumb-add" 
+                            visibility="{{ news.imageUrl, news.imageUrl | visibilityValueConverter }}">
+                            <Label text="&#xf030;" class="fa" horizontalAlignment="center" verticalAlignment="center" />
+                        </GridLayout>
+                        <GridLayout class="thumb-remove" 
+                            visibility="{{ news.imageUrl, !news.imageUrl | visibilityValueConverter }}">
+                            <Label text="&#xf014;" class="fa" horizontalAlignment="center" verticalAlignment="center" />
+                        </GridLayout>
+                    </GridLayout>
+                    <Label visibility="{{ news.imageUrl, news.imageUrl | visibilityValueConverter }}" 
+                        class="invalid-image" text="Image field is required" />
+                </StackLayout>
+
+                <Label text="CLASS" class="news-list-odd" />
+                <GridLayout columns="*, auto" tap="onSelectorTap" tag="class" class="news-list-even">
+                    <Label text="{{ news.class }}" />
+                    <Label text="&#xf054;" class="fa text-secondary" col="1" horizontalAlignment="center" verticalAlignment="center" />
+                </GridLayout>
+
+                <Label text="DOORS" class="news-list-odd" />
+                <GridLayout columns="*, auto" tap="onSelectorTap" tag="doors" class="news-list-even">
+                    <Label text="{{ news.doors }}" />
+                    <Label text="&#xf054;" class="fa text-secondary" col="1" horizontalAlignment="center" verticalAlignment="center" />
+                </GridLayout>
+
+                <Label text="SEATS" class="news-list-odd" />
+                <GridLayout columns="*, auto" tap="onSelectorTap" tag="seats" class="news-list-even">
+                    <Label text="{{ news.seats }}" />
+                    <Label text="&#xf054;" class="fa text-secondary" col="1" horizontalAlignment="center" verticalAlignment="center" />
+                </GridLayout>
+
+                <Label text="TRANSMISSION" class="news-list-odd" />
+                <GridLayout columns="*, auto" tap="onSelectorTap" tag="transmission" class="news-list-even">
+                    <Label text="{{ news.transmission }}" />
+                    <Label text="&#xf054;" class="fa text-secondary" col="1" horizontalAlignment="center" verticalAlignment="center" />
+                </GridLayout>
+                
+                <GridLayout rows="*, 55" columns="*, auto" class="news-list-odd">
+                    <Label text="LUGGAGE" />
+                    <Label col="1" horizontalAlignment="right" class="text-primary">
+                        <FormattedString>
+                            <Span text="{{ news.luggage }}" />
+                            <Span text=" Bag(s)" />
+                        </FormattedString>
+                    </Label>
+
+                    <Slider row="1" colSpan="2" minValue="0" maxValue="5" value="{{ news.luggage, news.luggage | roundingValueConverter }}" />
+                </GridLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+        <ActivityIndicator busy="{{ isUpdating }}" />
+    </GridLayout>
+</Page>

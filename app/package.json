@@ -1,0 +1,7 @@
+{
+    "main": "app.js",
+    "id": "org.nativescript.drawerTS",
+    "android": {
+        "v8Flags": "--expose_gc"
+    }
+}

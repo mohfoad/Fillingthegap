@@ -1,0 +1,39 @@
+<Page class="page" xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" >
+    
+    <ActionBar class="action-bar" backgroundColor="{{topbarColor}}">
+        <NavigationButton tap="onBackButtonTap" android.systemIcon="ic_menu_back" />
+        <Label class="action-bar-title" text="{{ news.categoryName }}" horizontalAlignment="center" />
+        <!-- <ActionItem tap="onEditButtonTap" ios.position="right" android.position="right">
+            <Label text="Edit" verticalAlignment="center" class="action-item" />
+        </ActionItem> -->
+    </ActionBar>
+
+    <GridLayout class="page-content" class="main-area" >
+        <ScrollView>
+            <GridLayout rows="*, *, *, *, *" class="p-10">
+                <GridLayout rows="*" columns="*, *" row="0" >
+                    <GridLayout row="0" col="0" width="{{screenWidth/3}}">
+                        <Image src="{{ news.imageUrl }}" stretch="aspectFit" />
+                    </GridLayout>
+                    <GridLayout row="0" col="1">
+                        <Label textWrap="true" text="{{news.title}}" fontSize="16" fontWeight="bold"/>
+                    </GridLayout>
+                </GridLayout>
+                
+                <StackLayout row="1" class="hr-light m-t-15 m-b-15"></StackLayout>
+                <GridLayout row="2" rows="*, *, *, *, *, *" columns="*,auto">
+                    <HtmlView class="text p-b-10" html="{{ news.subtitle }}" textWrap="true" textAlignment="left"/>
+                </GridLayout>
+                <StackLayout row="3" class="hr-light m-t-15 m-b-15"></StackLayout>
+                <!-- <GridLayout row="4" rows="*, *, *, *, *, *" columns="*,auto" class="p-10">
+                    <Label textWrap="true" text="Leer más:">
+                    </Label>
+                </GridLayout> -->
+                <GridLayout row="4" rows="*, *" columns="*,auto">
+                    <Label class="text p-b-10" text="Leer más:" row="0" fontSize="16" padding="8" fontWeight="bold" visibility="{{news.externalLink != ''? 'visible' : 'collapsed'}}"/>
+                    <Label class="text p-b-10" tap="onUrlTap" text="{{ news.externalLink }}" textWrap="true" color="#3C5AFD" row="1" />
+                </GridLayout>
+            </GridLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>

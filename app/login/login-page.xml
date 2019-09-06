@@ -1,0 +1,49 @@
+<Page loaded="pageLoaded" class="page" actionBarHidden="true">
+	<FlexboxLayout class="page" backgroundImage="~/images/backgroundimage.png">
+		<StackLayout class="form">
+			<Image class="logo" src="~/images/logo.png" />
+			<Label class="header" text="NOTICIAS" color="white"/>
+
+			<!-- <StackLayout class="input-field" visibility="{{ isLoggingIn ? 'visible' : 'collapse' }}">
+				<TextField class="input" text="{{ userName }}" autocorrect="false" autocapitalizationType="none"
+				 returnKeyType="next" />
+				<Label class="hr-light" />
+			</StackLayout> -->
+
+			<StackLayout class="input-field">
+				<TextField class="input" placeHolder="Email" text="{{ email }}" hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
+				 returnKeyType="next" color="white" style="placeholder-color:rgba(255,255,255,1.0)"/>
+				<Label class="hr-light" />
+			</StackLayout>
+
+			<StackLayout class="input-field">
+				<TextField id="password" class="input" text="{{ password }}" hint="Password" secure="true" returnKeyType="{{ isLoggingIn ? 'done' : 'next' }}" color="white" style="placeholder-color:rgba(255,255,255,1.0)"
+				/>
+				<Label class="hr-light" />
+			</StackLayout>
+
+			<StackLayout class="input-field" visibility="{{ !isLoggingIn ? 'visible' : 'collapse' }}">
+				<TextField id="confirmPassword" class="input" text="{{ confirmPassword }}" hint="Confirm password" secure="true" returnKeyType="done" color="white" style="placeholder-color:rgba(255,255,255,1.0)"
+				/>
+				<Label class="hr-light" />
+			</StackLayout>
+
+			<Button text="{{ isLoggingIn ? 'Log In' : 'REGISTRO' }}" tap="{{ submit }}" class="btn btn-primary m-t-20" />
+			<!-- <Label visibility="{{ !isRegistered? 'visible' : 'collapse' }}" text="Forgot your password?" class="login-label" tap="{{ forgotPassword }}" marginLeft="8"
+			/> -->
+		</StackLayout>
+		<StackLayout>
+			<Label class="login-label sign-up-label">
+				<FormattedString>
+					<Span text="{{ isLoggingIn ? '¿No tiene credenciales de acceso? ' : '' }}" color="white"/>
+				</FormattedString>
+			</Label>
+			<Label class="login-label sign-up-label" tap="{{ toggleForm }}">
+				<FormattedString>
+					<Span text="{{ isLoggingIn ? 'Regístrese aquí' : 'Vuelta al Login' }}" class="bold" color="white"/>
+				</FormattedString>
+			</Label>
+		</StackLayout>
+		<!-- <ActivityIndicator busy="{{ isLoading }}" class="activity-indicator" /> -->
+	</FlexboxLayout>
+</Page>
