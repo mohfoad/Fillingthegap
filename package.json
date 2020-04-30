@@ -18,7 +18,7 @@
     "@types/jsdom": "^12.2.0",
     "axios": "^0.18.0",
     "base-64": "^0.1.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jquery-ts": "^2.1.1",
     "jsdom": "^13.0.0",
     "nativescript-cfalert-dialog": "^1.0.13",
